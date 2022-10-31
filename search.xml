@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>Gvim使用指南</title>
+      <link href="/2022/11/01/GVIM/"/>
+      <url>/2022/11/01/GVIM/</url>
+      
+        <content type="html"><![CDATA[<p>#三种模式</p><p>##命令行模式</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">    Esc + :</span><br><span class="line">```    </span><br><span class="line">##输入模式</span><br><span class="line"></span><br></pre></td></tr></table></figure><pre><code>Esc</code></pre><pre><code>##块模式</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hello World</title>
       <link href="/2022/08/09/hello-world/"/>
       <url>/2022/08/09/hello-world/</url>
