@@ -8,7 +8,7 @@
       <link href="/2022/11/01/GVIM/"/>
       <url>/2022/11/01/GVIM/</url>
       
-        <content type="html"><![CDATA[<h2 id="三种模式"><a href="#三种模式" class="headerlink" title="三种模式"></a>三种模式</h2><h3 id="命令行模式"><a href="#命令行模式" class="headerlink" title="命令行模式"></a>命令行模式</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">    Esc + :</span><br><span class="line">```    </span><br><span class="line">### 输入模式</span><br><span class="line"></span><br></pre></td></tr></table></figure><pre><code>Esc</code></pre><pre><code>### 块模式</code></pre>]]></content>
+        <content type="html"><![CDATA[<h2 id="三种模式"><a href="#三种模式" class="headerlink" title="三种模式"></a>三种模式</h2><h3 id="命令行模式"><a href="#命令行模式" class="headerlink" title="命令行模式"></a>命令行模式</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Esc + :</span><br></pre></td></tr></table></figure><h3 id="输入模式"><a href="#输入模式" class="headerlink" title="输入模式"></a>输入模式</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Esc</span><br><span class="line"></span><br></pre></td></tr></table></figure><h3 id="块模式"><a href="#块模式" class="headerlink" title="块模式"></a>块模式</h3><p>Hello World!</p>]]></content>
       
       
       
