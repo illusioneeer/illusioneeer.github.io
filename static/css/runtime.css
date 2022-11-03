@@ -7,10 +7,10 @@
 div#runtime {
     width: 180px;
     margin: auto;
-    color: #fff;
+    color: #42cd21;
     padding-inline: 5px;
     border-radius: 10px;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(129, 132, 129, 0.7);
     font-family: 'UnidreamLED';
 }
 [data-theme="dark"] div#runtime {
