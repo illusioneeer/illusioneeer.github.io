@@ -3,3 +3,9 @@
     font-display: swap;
     src: url('http://axinup.com/font/HarmonyOS_Sans_Regular.ttf') format("truetype");
 }
+
+@font-face {
+    font-family: 'Consolas';
+    font-display: swap;
+    src: url("//db.onlinewebfonts.com/t/1db29588408eadbd4406aae9238555eb.ttf") format("truetype");
+}

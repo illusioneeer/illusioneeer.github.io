@@ -1661,7 +1661,7 @@ figure.highlight pre .javascript .function {
 #article-container pre,
 #article-container code {
   font-size: 17px;
-  font-family: HarmonyOs_Regular !important;
+  font-family: Consolas !important;
 }
 #article-container code {
   padding: 2px 4px;
