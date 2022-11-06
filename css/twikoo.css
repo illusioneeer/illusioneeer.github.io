@@ -1,6 +1,6 @@
 /* 自定义twikoo评论输入框高度 */
 .tk-input[data-v-619b4c52] .el-textarea__inner {
-    height: 90px !important;
+    height: 110px !important;
 }
 /* 输入评论时自动隐藏输入框背景图片 */
 .tk-input[data-v-619b4c52] .el-textarea__inner:focus {
@@ -28,7 +28,7 @@
 /* 评论块气泡化修改 */
 .tk-content {
     background: #74ba7f; /*默认模式访客气泡配色*/
-    padding: 10px;
+    padding: 6px;
     color: #fff; /*默认模式访客气泡字体配色*/
     border-radius: 10px;
     font-size: 16px !important;
