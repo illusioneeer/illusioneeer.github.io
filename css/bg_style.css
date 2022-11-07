@@ -21,3 +21,7 @@
 [data-theme="dark"] #page-header::before {
     background: transparent !important;
 }
+
+#page-header #site-title {
+    font-size: 7em;
+}
