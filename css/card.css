@@ -1,0 +1,31 @@
+#aside-content .card-widget.card-info {
+    border-radius: 40px;
+    border: #000 9px solid;
+    background-color: #1FC7B6;
+    padding: 0 14px 8px;
+    animation-name: slideInRight;
+}
+
+.status-bar {
+    position: relative;
+    display: flex;
+    height: 20px;
+    margin-bottom: 13px;
+    justify-content: space-between;
+}
+
+.status-bar_clock {
+    font-size: 14px;
+    font-weight: 700;
+    margin-left: 8px;
+    letter-spacing: 1.2px;
+    color: #FFFFFF;
+    margin-top: 7px;
+}
+
+.status-bar_img {
+    height: 15px!important;
+    width: 80px!important;
+    margin-top: 7px;
+    filter: none!important;
+}
