@@ -1,9 +1,19 @@
 a:hover {
     color: #1fc7b6;
 }
-#aside-content {
-    width: calc(90% + 5px);
-    margin: 0 auto;
+
+@media screen and (max-width:600px) {
+    #aside-content {
+        width: calc(90% + 5px);
+        margin: 0 auto;
+    }
+}
+
+@media screen and (min-width:960px) {
+    #aside-content {
+        width: calc(25% + 5px);
+        margin: 0 auto;
+    }
 }
 
 #aside-content .card-info .card-info-data>.card-info-data-item:hover {
@@ -97,6 +107,29 @@ a:hover {
 }
 
 #aside-content .card-info .author-info__name a {
+    color: #FFFFFF;
+    display: block;
+    border-radius: 12px;
+    transition: .3s;
+}
+
+#aside-content .card-info .author-info__name:hover {
+    background-color: #ffffff;
+}
+
+
+#aside-content .card-info .author-info__name a:after {
+    opacity: 0;
+    position: absolute;
+    right: calc(50% - 72px);
+    content: "森罗日下部";
+    top: 0;
+    font-size: 28px;
+    transition: .3s;
+    color: #4CD2C5;
+}
+
+#aside-content .card-info .author-info__name a {
     color: #ffffff;
     display: block;
     border-radius: 12px;
@@ -121,7 +154,6 @@ a:hover {
     display: -moz-box;
     display: -webkit-flex;
     display: -ms-flexbox;
-    display: box;
     display: flex;
     -webkit-box-pack: justify;
     -moz-box-pack: justify;
