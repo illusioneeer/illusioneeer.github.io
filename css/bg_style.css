@@ -33,3 +33,7 @@
         font-size: 7em;
     }
 }
+
+[data-theme='dark'] img {
+    filter: brightness(1);
+}
