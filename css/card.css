@@ -2,7 +2,8 @@ a:hover {
     color: #1fc7b6;
 }
 #aside-content {
-    width: calc(25% + 5px);
+    width: calc(90% + 5px);
+    margin: 0 auto;
 }
 
 #aside-content .card-info .card-info-data>.card-info-data-item:hover {
