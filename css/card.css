@@ -180,3 +180,8 @@ a:hover {
 #aside-content #card-toc .toc-content > * {
     margin: 0px !important;
 }
+
+#aside-content .item-headline {
+    padding-bottom: 6px;
+    font-size: 0em;
+}
