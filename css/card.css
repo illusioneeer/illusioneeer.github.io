@@ -176,3 +176,7 @@ a:hover {
     font-weight: 600;
 }
 
+
+#aside-content #card-toc .toc-content > * {
+    margin: 0px !important;
+}
