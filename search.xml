@@ -4,13 +4,25 @@
   
     
     <entry>
-      <title>Hello World</title>
+      <title>从零开始硬件加速(一)</title>
       <link href="/2023/03/28/Petalinux/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8BVitis%E7%A1%AC%E4%BB%B6%E5%8A%A0%E9%80%9F/"/>
       <url>/2023/03/28/Petalinux/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8BVitis%E7%A1%AC%E4%BB%B6%E5%8A%A0%E9%80%9F/</url>
       
         <content type="html"><![CDATA[<h1 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h1><p>Vitis是Xilinx推出的一款统一软件平台，软件平台包括：</p><ol><li>全面的内核开发套件，可无缝构建加速应用</li><li>完整的硬件加速开源库，针对 <strong>AMD FPGA</strong> 和 <strong>Versal™ ACAP</strong> 硬件平台进行了优化</li><li>插入特定领域的开发环境，可直接在熟悉的更高层次框架中进行开发</li><li>不断发展的硬件加速合作伙伴库和预建应用生态系统</li><li><strong>Vitis Model Composer</strong> 是一款基于模型的设计工具，支持在<strong>MathWorks MATLAB®</strong> 和 <strong>Simulink®</strong> 环境中进行快速设计探索和验证，并加速 <strong>AMD</strong> 器件的量产。</li><li><strong>Vitis Networking P4</strong> 允许创建软定义网络。<strong>VitisNetP4</strong> 数据平面构建器生成的系统可以针对从简单的数据包分类到复杂的数据包编辑的各种数据包处理功能进行编程。</li></ol><p>目前软件发行了<strong>Windows</strong>和<strong>Linux</strong>两个版本，<strong>Windows</strong>主要针对硬件开发用户，而如果需要使用完整的硬件加速的完整功能，只能在<strong>Linux</strong>下实现，因此以下案例均以<strong>Linux</strong>为平台开发。</p><h2 id="Linux安装"><a href="#Linux安装" class="headerlink" title="Linux安装"></a>Linux安装</h2><p>开发环境选择VMware作为虚拟机，需要注意是的<strong>petalinux2018.3</strong>只支持<strong>ubuntu2018.3</strong>，之后的版本由于<strong>python</strong>工具包版本总是出问题，如果选择<strong>petalinux2018.3</strong>那么必须选择<strong>ubuntu2018.3</strong>，<br><strong>petalinux</strong>之后的版本支持全系列<strong>ubuntu</strong>版本。理论上支持<strong>centos</strong>环境，但是需要打很多驱动比较繁琐，此处就不折腾了。下载<a href="https://ubuntu.com/">ubuntu</a> 推荐上官网，此处选择版本<strong>ubuntu22.04 LTS (Long Tern Support)</strong><br>,顾名思义软件安装包将得到更长的支持。<br><img src="https://img.picgo.net/2023/03/28/unbuntu67969e279a219d9b.png" alt="Ubuntu下载"></p><p>下载好<strong>Ubuntu</strong>镜像后在<strong>VMware</strong>中创建虚拟机。<br><img src="https://img.picgo.net/2023/03/28/a5f82be0aba6a4b46648406ec1546b6b3864390df1d24b34.png" alt="创建虚拟机"><br>然后选择此处稍后安装操作系统。<br><img src="https://img.picgo.net/2023/03/29/fc1f7b380bf3767c841e1f69f1e475595ecffdb0ffa661d0.png" alt="稍后安装操作系统"><br>选择正确的<strong>Ubuntu</strong>系统。<br><img src="https://img.picgo.net/2023/03/29/linuxa62ebba9218592cd.png" alt="选择正确Ubuntu系统"><br>选择虚拟机名称和安装路径，需要注意的是虚拟机名称不是<strong>Ubuntu</strong>的<strong>User</strong>名，而是<strong>VMware</strong>中看到的名称，一个用户可能安装多个虚拟机，以此作为区分。<br><img src="https://img.picgo.net/2023/03/29/ubuntu10ff3451ab804029c.png" alt="安装路径选择"><br>选择虚拟机的大小，建议将虚拟机文件存储为单个文件，这样容易维护。<br><img src="https://img.picgo.net/2023/03/29/e5e04c11ff858a2bb939c97f56611710ef82bf798e6cf6cf.png" alt="选择虚拟机分配空间大小"><br>根据自己电脑的性能分配虚拟机的内存和处理器的多少，然后在CD/DVD处选择下载好的<strong>Ubuntu</strong>镜像。<br><img src="https://img.picgo.net/2023/03/29/b6e034cedbdb5c629deaff52639f90bfba224709cc6643af.png" alt="定义虚拟机性能"><br>之后打开虚拟机即可安装<strong>Ubuntu</strong>。<br><img src="https://img.picgo.net/2023/03/29/ubuntu3d90089c6a458442.png" alt="选择安装ubuntu"><br>语言选择建议选择英文，整个虚拟机中不需要出现中文。<br><img src="https://img.picgo.net/2023/03/29/16607b9b8c54203950b89a0656dd5905f0aa8850d21285b8.png" alt="语言选择"><br>建议将安装Ubuntu时更新去掉。<br><img src="https://img.picgo.net/2023/03/29/7874e25f68339ba440ce3a96c459c53f41f49c837c684bf8.png" alt="普通设置"><br>清除整个磁盘，这边直接选择清除，磁盘空间本来就是VM刚创建的空间，没有文件。<br><img src="https://img.picgo.net/2023/03/29/951ae78cbcfd091b83fe07e96fb120394f50d1370bec0945.png" alt="清除整个磁盘"><br>创建用户，设置密码，然后进入各种包的安装环节，直接安装即可。<br><img src="https://img.picgo.net/2023/03/29/4ff462119d2baec7063450ef5c3e5b04993c397007d6a085.png" alt="创建用户"></p>]]></content>
       
       
+      <categories>
+          
+          <category> Vitis </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> PetaLinux </tag>
+            
+        </tags>
       
     </entry>
     
