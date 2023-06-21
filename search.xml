@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>TinyRSIC-V介绍</title>
+      <link href="/2023/06/22/RISCV/TInyRISC-V/tinyrisc-v%E4%BB%8B%E7%BB%8D/"/>
+      <url>/2023/06/22/RISCV/TInyRISC-V/tinyrisc-v%E4%BB%8B%E7%BB%8D/</url>
+      
+        <content type="html"><![CDATA[<h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><p>RSIC-V这个名词想必大家都不陌生，早在多年前我就萌生了学习RSIC-V的想法，这个想法的起因首先是我十分看好开源精简指令集的发展，在x86和arm指令集垄断的今天，如果大家都能统一标准来共同建设精简指令集，那么多年后一定会有良好的市场氛围和开源生态；另外一个原因则是个人的一些爱好，在研究生期间使用过Altera的niosⅡ和Xilinx的microblaze的RISC软核，之后又学习了带有硬件ARM核的ZYNQ等系列FPGA，最后又尝试了ARM M0和M3的软核还有某些开源生态的RSIC-V如平头哥wujian100的FPGA移植。在FPGA中移植了CPU就像如鱼得水一般，FPGA可以提供强大的并行计算能力而CPU可以进行复杂的逻辑运算和中断控制，两者在系统中有着至关重要的作用。</p><h2 id="书籍推荐"><a href="#书籍推荐" class="headerlink" title="书籍推荐"></a>书籍推荐</h2><p>在确定了学习目标后，如何学习RISC-V变成了一个难题，因此本博客致力于RSIC的扫盲和入门学习。在我看来，学习RISC-V两个部分少不了，一个是书籍一个是项目。书籍可以提供强大的基础知识和理论支持，学习RSIC-V需要重新捡起来很多计算机体系架构、编译原理、编程语言等知识，在这里我推荐两本书籍：</p><ol><li>《计算机组成与设计-硬件软件接口-RISCV版本》推荐第五版</li><li>《手把手教你设计CPU-RSICV处理器》<br>第一本书着重于基于RISCV架构来介绍计算机组成原理，并且涉及了很多软硬件上的知识，这对于只懂软件或硬件的人来说是一个很好的桥梁，该书为后续学习打下基础。如果说第一本书比较枯燥无味，那么第二本就显得生动直接，该书出自蜂鸟E200系列的作者，作者也是基于自己蜂鸟E203开源项目来介绍RSICV的设计，理论和代码的呈现方式显得知识没有那么枯燥无味，对于RISCV入门来说绝对是一本不错的书籍。</li></ol><h2 id="项目的推荐"><a href="#项目的推荐" class="headerlink" title="项目的推荐"></a>项目的推荐</h2><ol><li>TinyRSICV</li><li>蜂鸟E203</li><li>平头哥wujian100</li><li>中科院“一生一芯”项目</li></ol><p>本博客则是以<a href="https://liangkangnan.gitee.io/2020/04/29/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%86%99RISC-V%E5%A4%84%E7%90%86%E5%99%A8/">TinyRISC-V</a>为对象，进行RSIC-V的介绍和学习。</p><h1 id="什么是RISC-V"><a href="#什么是RISC-V" class="headerlink" title="什么是RISC-V?"></a>什么是RISC-V?</h1><p>百度百科对此的解释为：<strong>RISC-V</strong>（发音为“risk-five”）是一个基于<a href="https://link.zhihu.com/?target=https://baike.baidu.com/item/%25E7%25B2%25BE%25E7%25AE%2580%25E6%258C%2587%25E4%25BB%25A4%25E9%259B%2586">精简指令集</a>（RISC）原则的<a href="https://link.zhihu.com/?target=https://baike.baidu.com/item/%25E5%25BC%2580%25E6%25BA%2590">开源</a><a href="https://link.zhihu.com/?target=https://baike.baidu.com/item/%25E6%258C%2587%25E4%25BB%25A4%25E9%259B%2586%25E6%259E%25B6%25E6%259E%2584">指令集架构</a>（ISA）。与大多数指令集相比，RISC-V指令集可以自由地用于任何目的，允许任何人<a href="https://link.zhihu.com/?target=https://baike.baidu.com/item/%25E8%25AE%25BE%25E8%25AE%25A1">设计</a>、制造和销售RISC-V<a href="https://link.zhihu.com/?target=https://baike.baidu.com/item/%25E8%258A%25AF%25E7%2589%2587">芯片</a>和<a href="https://link.zhihu.com/?target=https://baike.baidu.com/item/%25E8%25BD%25AF%25E4%25BB%25B6">软件</a>。虽然这不是第一个开源指令集，但它具有重要意义，因为其设计使其适用于现代计算设备（如仓库规模<a href="https://link.zhihu.com/?target=https://baike.baidu.com/item/%25E4%25BA%2591%25E8%25AE%25A1%25E7%25AE%2597%25E6%259C%25BA">云计算机</a>、高端<a href="https://link.zhihu.com/?target=https://baike.baidu.com/item/%25E7%25A7%25BB%25E5%258A%25A8%25E7%2594%25B5%25E8%25AF%259D">移动电话</a>和微小嵌入式系统）。</p><p>可以说RISC-V之于ARM等其他架构，就如同Linux之于Windows。按规律来看，开源、精简的东西总是有更大的发展潜能，而在现今中国IC国产化的趋势下，RISC-V的未来或许会更有看头。</p><p>那么我们在设计RISC-V时，我们究竟在设计什么呢？RISC-V的指令集呈模块化，根据应用场景选择合适的指令集组合，并据此设计CPU流水线是设计RISC-V的最大特点。所以需要我们设计的部分最主要体现在译码、执行的阶段。指令集文档可在<a href="https://link.zhihu.com/?target=https://riscv.org/specifications/">RISC-V基金会</a>网站下载。</p><h1 id="TinyRSIC-V总体框架介绍"><a href="#TinyRSIC-V总体框架介绍" class="headerlink" title="TinyRSIC-V总体框架介绍"></a>TinyRSIC-V总体框架介绍</h1><p><a href="https://liangkangnan.gitee.io/2020/04/29/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%86%99RISC-V%E5%A4%84%E7%90%86%E5%99%A8/">TinyRISC-V</a>作者的官方博客由链接可以进入。TinyRSIC-V是一个三级流水线结构的RISC-V架构，下图为TinyRSIC-V的SOC架构：</p><p><img src="https://img.picgo.net/2023/06/20/tinyrsicv9668982a83d2bd0f.png" alt="TinyRISC-V架构"></p><p>CPU执行一条指令一般有五个过程：取指（Instruction Fetch）、译码（Instruction Decode）、执行（Instruction Execute）、访存（Memory Access）、写回（Write-Back）。让我们按照框架图简单捋一捋tinyriscv大致的工作流程：</p><ol><li>取指：程序在编译烧录后会作为二进制的指令存放在rom中。CPU开始工作时PC寄存器（pc_reg.v）会产生指向rom中存放指令的地址(pc_o)。if_id.v作为取指到译码的中间模块，将指令信号打一拍后送到译码模块。</li><li>译码：id.v根据指令内容，解析指令得到需要进行的操作，知道接下来该在哪里做什么事（如是否读寄存器、得到寄存器的值、地址），再将解析指令后得到的信号传递给译码与执行的中间模块id_ex.v，打一拍后输出到执行模块。</li><li>执行：该阶段就是根据译码的结果执行相关操作了（如对通用寄存器的值做一些运算）。</li><li>访存：如果译码识别出世内存访问指令，则将向总线发出访问内存请求，在执行阶段就会得到对应的数据了。</li><li>写回：将执行的计算结果写回通用寄存器，作为临时数据存储。</li></ol><p>由上图可以看出，一级流水线完成了取指，二级流水线完成了译码，三级流水线完成了执行、访存和写回操作，除此之外TinyRISC-V核还搭载了硬件的除法器单元。整个SOC搭载了几个简单的timer、uart、gpio和spi接口。TinyRSIC-V还搭载了JTAG调试和下载程序接口。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> risc-v </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> risc-v </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>TinyRSIC-V环境搭建</title>
       <link href="/2023/06/20/RISCV/TInyRISC-V/tinyrsic-v%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
       <url>/2023/06/20/RISCV/TInyRISC-V/tinyrsic-v%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</url>
@@ -42,7 +67,7 @@
     
     
     <entry>
-      <title>Git的</title>
+      <title>Git的使用教程</title>
       <link href="/2023/06/13/Tools/git/"/>
       <url>/2023/06/13/Tools/git/</url>
       
